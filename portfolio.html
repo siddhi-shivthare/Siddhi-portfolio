@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Creative Portfolio | Siddhi Kundan Shivthare</title>
+  <!-- Inline CSS only - Pastel, Minimal Aesthetic with Two Pages -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #f3efe7;
+      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      line-height: 1.5;
+      color: #2c2b28;
+      padding: 2rem 1.5rem;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* main card container */
+    .portfolio-card {
+      max-width: 1100px;
+      width: 100%;
+      margin: 0 auto;
+      background-color: #fffef9;
+      border-radius: 32px;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.03), 0 0 0 1px rgba(0, 0, 0, 0.01);
+      overflow: hidden;
+    }
+
+    .portfolio-inner {
+      padding: 2.5rem 2.5rem;
+    }
+
+    .accent-bar {
+      height: 4px;
+      background: linear-gradient(90deg, #c7e9d0, #b8dfc8, #aad0bc);
+      width: 100%;
+    }
+
+    /* Navigation Tabs */
+    .nav-tabs {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      border-bottom: 2px solid #f0ede5;
+      padding-bottom: 0.75rem;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      padding: 0.6rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #8fa282;
+      cursor: pointer;
+      border-radius: 40px;
+      transition: all 0.2s ease;
+      font-family: inherit;
+    }
+
+    .tab-btn:hover {
+      background: #f3f7ef;
+      color: #4a6741;
+    }
+
+    .tab-btn.active {
+      background: #eef4ea;
+      color: #3a5c33;
+      font-weight: 600;
+    }
+
+    /* Page content */
+    .page {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .page.active-page {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* track badge */
+    .track-badge {
+      display: inline-block;
+      background-color: #eef4ea;
+      padding: 0.3rem 1rem;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.3px;
+      color: #4a6741;
+      margin-bottom: 1.8rem;
+      border: 1px solid #e0ecdb;
+    }
+
+    /* Hero section */
+    .hero-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.8rem;
+    }
+
+    .title-area {
+      flex: 2;
+      min-width: 200px;
+    }
+
+    .photo-area {
+      flex-shrink: 0;
+    }
+
+    h1 {
+      font-size: 2.6rem;
+      font-weight: 500;
+      letter-spacing: -0.01em;
+      color: #2d3e2b;
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+
+    .subhead {
+      font-size: 1rem;
+      color: #7c8b74;
+      border-left: 3px solid #cfe3ca;
+      padding-left: 1rem;
+    }
+
+    .passport-photo {
+      width: 130px;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 20px;
+      border: 2px solid #e2e8db;
+      background-color: #fefaf0;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+      transition: all 0.2s ease;
+      display: block;
+    }
+
+    .passport-photo:hover {
+      border-color: #c2d6b6;
+    }
+
+    /* info grid */
+    .info-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      margin: 2rem 0 2rem 0;
+    }
+
+    .info-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      border-bottom: 1px solid #f0ede5;
+      padding-bottom: 0.75rem;
+    }
+
+    .info-label {
+      width: 130px;
+      font-weight: 600;
+      color: #5b6e53;
+      font-size: 0.9rem;
+      letter-spacing: 0.3px;
+    }
+
+    .info-value {
+      flex: 1;
+      color: #2e3a2b;
+      font-weight: 500;
+      font-size: 1rem;
+      word-break: break-word;
+    }
+
+    .info-value strong {
+      font-weight: 700;
+      color: #3a5c33;
+    }
+
+    .address-block {
+      white-space: pre-line;
+    }
+
+    /* course section */
+    .course-section {
+      background-color: #fafaf6;
+      border-radius: 24px;
+      padding: 1.4rem 1.5rem;
+      margin: 1.8rem 0 1.2rem 0;
+      border: 1px solid #f0ede2;
+    }
+
+    .double-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: space-between;
+    }
+
+    .info-mini {
+      flex: 1;
+      min-width: 180px;
+    }
+
+    .info-mini .label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+      color: #9aae8f;
+      margin-bottom: 0.3rem;
+    }
+
+    .info-mini .value {
+      font-weight: 500;
+      color: #2c3e2a;
+      font-size: 1rem;
+    }
+
+    /* Achievements Section */
+    .achievements-section {
+      margin: 2rem 0 1rem 0;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: #2d3e2b;
+      letter-spacing: -0.2px;
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .section-title:before {
+      content: "🏆";
+      font-size: 1.4rem;
+      opacity: 0.8;
+    }
+
+    .achievements-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .achievement-category {
+      background-color: #fafbf7;
+      border-radius: 24px;
+      padding: 1.2rem 1.5rem;
+      border: 1px solid #eff0e8;
+      transition: all 0.2s ease;
+    }
+
+    .achievement-category:hover {
+      background-color: #fefefb;
+      border-color: #e2e8da;
+    }
+
+    .category-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 2px solid #e7efdf;
+    }
+
+    .category-icon {
+      font-size: 1.6rem;
+    }
+
+    .category-name {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #4a6741;
+    }
+
+    .achievement-list {
+      list-style: none;
+      padding-left: 0.5rem;
+    }
+
+    .achievement-list li {
+      margin-bottom: 0.7rem;
+      padding-left: 1.5rem;
+      position: relative;
+      font-size: 0.95rem;
+      color: #3e4a38;
+      line-height: 1.45;
+    }
+
+    .achievement-list li:before {
+      content: "⚡";
+      position: absolute;
+      left: 0;
+      color: #aac29b;
+      font-size: 0.85rem;
+    }
+
+    .achievement-list li strong {
+      color: #3a5c33;
+      font-weight: 600;
+    }
+
+    /* About Me / Bio Section - Page 2 Styling */
+    .about-section {
+      margin: 1rem 0 2rem 0;
+    }
+
+    .bio-card {
+      background: #fefef9;
+      border-radius: 28px;
+      padding: 1.8rem;
+      margin-bottom: 1.8rem;
+      border: 1px solid #edf0e6;
+    }
+
+    .bio-text {
+      font-size: 1rem;
+      line-height: 1.65;
+      color: #3e4a3a;
+      margin-bottom: 1rem;
+    }
+
+    .bio-text:last-child {
+      margin-bottom: 0;
+    }
+
+    .info-block {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      border-top: 1px solid #ece8df;
+    }
+
+    .info-block-item {
+      flex: 1;
+      min-width: 200px;
+    }
+
+    .info-block-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 600;
+      color: #9aae8f;
+      margin-bottom: 0.5rem;
+    }
+
+    .info-block-value {
+      font-weight: 500;
+      color: #2c3e2a;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .info-block-value strong {
+      color: #3a5c33;
+      font-weight: 600;
+    }
+
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 0.5rem;
+    }
+
+    .skill-tag {
+      background: #eef4ea;
+      padding: 0.25rem 0.9rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      color: #4a6741;
+      font-weight: 500;
+    }
+
+    .interests-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 0.5rem;
+    }
+
+    .interest-tag {
+      background: #f2efe6;
+      padding: 0.25rem 0.9rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
+      color: #6b7c60;
+    }
+
+    .energy-note {
+      margin-top: 2rem;
+      padding-top: 1rem;
+      font-size: 0.85rem;
+      color: #8e9e83;
+      text-align: right;
+      border-top: 1px dashed #e2e0d6;
+    }
+
+    @media (max-width: 680px) {
+      .portfolio-inner {
+        padding: 1.5rem;
+      }
+      h1 {
+        font-size: 1.9rem;
+      }
+      .hero-section {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.2rem;
+      }
+      .passport-photo {
+        width: 100px;
+        height: 125px;
+      }
+      .info-label {
+        width: 100%;
+        margin-bottom: 0.2rem;
+      }
+      .info-row {
+        flex-direction: column;
+        gap: 0.3rem;
+      }
+      .double-row {
+        flex-direction: column;
+      }
+      .tab-btn {
+        padding: 0.4rem 1rem;
+        font-size: 0.9rem;
+      }
+      .bio-card {
+        padding: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="portfolio-card">
+    <div class="accent-bar"></div>
+    <div class="portfolio-inner">
+      
+      <!-- Tab Navigation -->
+      <div class="nav-tabs">
+        <button class="tab-btn active" data-page="page1">📄 Introduction</button>
+        <button class="tab-btn" data-page="page2">🌟 About & Journey</button>
+      </div>
+
+      <!-- PAGE 1 - COVER PAGE (Personal Info + Achievements) -->
+      <div id="page1" class="page active-page">
+        <div class="track-badge">
+          🌱 TRACK: Affordable Energy & Clean Energy
+        </div>
+
+        <div class="hero-section">
+          <div class="title-area">
+            <h1>Siddhi Kundan Shivthare</h1>
+            <div class="subhead">
+              Creative Technology · MIT Academy of Engineering
+            </div>
+          </div>
+          <div class="photo-area">
+            <img 
+              class="passport-photo" 
+              src="image.jpg" 
+              alt="Passport size photo - Siddhi Kundan Shivthare"
+              title="Passport Photo (update src path)"
+            >
+            <div style="font-size: 0.65rem; color: #cbdcc0; text-align: center; margin-top: 6px;">▼ update image path</div>
+          </div>
+        </div>
+
+        <div class="info-grid">
+          <div class="info-row">
+            <div class="info-label">Full Name</div>
+            <div class="info-value"><strong>Siddhi Kundan Shivthare</strong></div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">Address</div>
+            <div class="info-value address-block">
+              <strong>Flat 111 , Pradnya Society Mhada Building , In front of Sai Baba Mandir , Near YCM Hospital Sant Tukaram Nagar , Pimpri Pune - 18</strong>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">Department</div>
+            <div class="info-value"><strong>Mechanical Engineering ( ME2 )</strong></div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">PRN</div>
+            <div class="info-value"><strong>202501090108</strong></div>
+          </div>
+          <div class="info-row">
+            <div class="info-label">College</div>
+            <div class="info-value"><strong>MIT Academy of Engineering , Alandi</strong></div>
+          </div>
+        </div>
+
+        <div class="course-section">
+          <div class="double-row">
+            <div class="info-mini">
+              <div class="label">Course Name</div>
+              <div class="value"><strong>Creative Technology</strong></div>
+            </div>
+            <div class="info-mini">
+              <div class="label">Track Alloted</div>
+              <div class="value"><strong>Affordable Energy and Clean Energy</strong></div>
+            </div>
+            <div class="info-mini">
+              <div class="label">Course Instructor</div>
+              <div class="value"><strong>Mr. Vinod Pakhale</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Achievements Section (Football, Athletics, Running) -->
+        <div class="achievements-section">
+          <div class="section-title">Achievements & Honors</div>
+          <div class="achievements-grid">
+            <div class="achievement-category">
+              <div class="category-header">
+                <span class="category-icon">⚽</span>
+                <span class="category-name">Football</span>
+              </div>
+              <ul class="achievement-list">
+                <li><strong>State-level Football Player</strong> representing Maharashtra.</li>
+                <li>Represented <strong>Maharashtra</strong> in competitive football tournaments at the state level.</li>
+                <li><strong>Finalist player</strong> in Zonal Football Tournament (Under-17 category).</li>
+                <li>Awarded <strong>Best Player</strong> in football matches.</li>
+                <li>Awarded <strong>Best Defender</strong> in football tournaments.</li>
+                <li>Recognized as <strong>Highest Goal Scorer</strong> in multiple football competitions.</li>
+              </ul>
+            </div>
+            <div class="achievement-category">
+              <div class="category-header">
+                <span class="category-icon">🏃‍♀️</span>
+                <span class="category-name">Athletics</span>
+              </div>
+              <ul class="achievement-list">
+                <li><strong>Gold Medal Winner</strong> – Under-14 100 meters race.</li>
+                <li><strong>Silver Medal Winner</strong> – Under-14 4×100 meters relay (Zonal level).</li>
+                <li><strong>Silver Medal Winner</strong> – Under-17 4×100 meters relay.</li>
+              </ul>
+            </div>
+            <div class="achievement-category">
+              <div class="category-header">
+                <span class="category-icon">🏅</span>
+                <span class="category-name">Running Race</span>
+              </div>
+              <ul class="achievement-list">
+                <li><strong>Silver Medal Winner</strong> – 5 km Running Race competition.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="energy-note">
+          ⚡ design for affordable & clean energy · creative technology portfolio
+        </div>
+      </div>
+
+      <!-- PAGE 2 - ABOUT ME, JOURNEY, SKILLS, INTERESTS, OBJECTIVE -->
+      <div id="page2" class="page">
+        <div class="track-badge">
+          📖 about · journey · aspirations
+        </div>
+
+        <div class="hero-section" style="margin-bottom: 1.2rem;">
+          <div class="title-area">
+            <h1 style="font-size: 2rem;">Siddhi Kundan Shivthare</h1>
+            <div class="subhead">
+              Mechanical Engineering · MIT Academy of Engineering, Alandi
+            </div>
+          </div>
+          <div class="photo-area">
+            <img 
+              class="passport-photo" 
+              src="image.jpg" 
+              alt="Passport photo"
+              style="width: 100px; height: 120px;"
+            >
+          </div>
+        </div>
+
+        <!-- About & Introduction -->
+        <div class="about-section">
+          <div class="bio-card">
+            <div class="bio-text">
+              <strong>✨ About Me</strong><br>
+              I am <strong>Siddhi Kundan Shivthare</strong>, currently pursuing a degree in <strong>Mechanical Engineering</strong> at <strong>MIT Academy of Engineering, Alandi</strong>. I am a curious and creative learner with a strong inclination toward technology and design-oriented projects. I enjoy exploring innovative ideas and enhancing my practical knowledge through hands-on experiences. My aspiration is to build strong technical expertise and contribute meaningfully to innovative engineering solutions.
+            </div>
+          </div>
+
+          <!-- Education Journey -->
+          <div class="bio-card">
+            <div class="bio-text">
+              <strong>📚 Academic Journey</strong><br>
+              I completed my <strong>Secondary School Certificate (SSC – 10th grade)</strong> from <strong>GG International School, Pimpri Pune – 18</strong>, where I developed a solid academic foundation and cultivated a deep interest in science and mathematics. I further completed my <strong>Higher Secondary Certificate (HSC – 12th grade)</strong> from <strong>SNBP International School and College, Morwadi</strong>, specializing in the science stream, which strengthened my analytical abilities and inspired me to pursue engineering as a career.
+            </div>
+          </div>
+
+          <!-- Technical & Interpersonal Skills -->
+          <div class="bio-card">
+            <div class="bio-text">
+              <strong>🛠️ Technical Competencies</strong>
+            </div>
+            <div class="skills-list">
+              <span class="skill-tag">Mechanical Engineering Concepts</span>
+              <span class="skill-tag">CAD & Design Principles</span>
+              <span class="skill-tag">Basic Python Programming</span>
+              <span class="skill-tag">Model-making</span>
+              <span class="skill-tag">Workshop Activities</span>
+            </div>
+            <div class="bio-text" style="margin-top: 1rem;">
+              <strong>🤝 Interpersonal Strengths</strong>
+            </div>
+            <div class="skills-list">
+              <span class="skill-tag">Effective Communication</span>
+              <span class="skill-tag">Teamwork</span>
+              <span class="skill-tag">Creativity</span>
+              <span class="skill-tag">Adaptability</span>
+              <span class="skill-tag">Time Management</span>
+            </div>
+          </div>
+
+          <!-- Interests & Learning Approach -->
+          <div class="bio-card">
+            <div class="bio-text">
+              <strong>💡 Interests & Learning Philosophy</strong>
+            </div>
+            <div class="interests-list">
+              <span class="interest-tag">Emerging Technologies</span>
+              <span class="interest-tag">Creative Design Projects</span>
+              <span class="interest-tag">Practical Application</span>
+              <span class="interest-tag">Collaborative Innovation</span>
+            </div>
+            <div class="bio-text" style="margin-top: 1rem;">
+              I consider myself a <strong>dedicated, responsible, and quick learner</strong> who enjoys collaboration and embraces new challenges as opportunities for growth.
+            </div>
+          </div>
+
+          <!-- Career Objective -->
+          <div class="bio-card">
+            <div class="bio-text">
+              <strong>🎯 Career Objective</strong><br>
+              My career objective is to continuously refine my technical and professional skills, gain valuable industry experience, and evolve into a competent mechanical engineer contributing positively to technological advancement and society.
+            </div>
+          </div>
+
+          <!-- Additional Highlights -->
+          <div class="info-block">
+            <div class="info-block-item">
+              <div class="info-block-label">Core Values</div>
+              <div class="info-block-value">Curiosity · Creativity · Responsibility · Adaptability</div>
+            </div>
+            <div class="info-block-item">
+              <div class="info-block-label">Aspiration</div>
+              <div class="info-block-value">Innovative Engineering Solutions · Sustainable Design</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="energy-note">
+          🌱 "Embrace challenges as opportunities for growth" · mechanical engineering · creative technologist
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Simple tab switching functionality
+    const tabs = document.querySelectorAll('.tab-btn');
+    const pages = document.querySelectorAll('.page');
+
+    function switchPage(pageId) {
+      pages.forEach(page => {
+        page.classList.remove('active-page');
+      });
+      const activePage = document.getElementById(pageId);
+      if (activePage) {
+        activePage.classList.add('active-page');
+      }
+      
+      tabs.forEach(tab => {
+        tab.classList.remove('active');
+      });
+      const activeTab = Array.from(tabs).find(tab => tab.getAttribute('data-page') === pageId);
+      if (activeTab) {
+        activeTab.classList.add('active');
+      }
+    }
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const pageId = tab.getAttribute('data-page');
+        switchPage(pageId);
+      });
+    });
+  </script>
+</body>
+</html>
